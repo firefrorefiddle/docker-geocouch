@@ -1,0 +1,4 @@
+23c23
+< ERL_START_OPTIONS="$ERL_OS_MON_OPTIONS -sasl errlog_type error +K true +A 4"
+---
+> ERL_START_OPTIONS="$ERL_OS_MON_OPTIONS -sasl errlog_type error +K true +A 4 -pa /opt/geocouch-couchdb1.3.x/ebin"

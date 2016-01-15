@@ -40,8 +40,9 @@ RUN /opt/couchdb-config
 VOLUME ["/usr/local/var/log/couchdb", "/usr/local/var/lib/couchdb", "/usr/local/etc/couchdb", "/opt/apache-couchdb-1.6.0/", "/opt/geocouch-couchdb1.3.x"]
 # couchdb + geocouch source folders added for debugging
 
-# make erlang aware of the geocouch couchdb plugin beam files
-ENV ERL_FLAGS="+A 4 -pa /opt/geocouch-couchdb1.3.x/ebin"
+# hardcode couchdb plugin beam files into start options
+ADD ./opts.patch /tmp/opts.patch
+RUN patch /usr/local/bin/couchdb </tmp/opts.patch
 
 ENTRYPOINT ["/opt/start_couch"]
 EXPOSE 5984
